@@ -68,7 +68,7 @@ This project implements a simple messaging queue system designed for a remote pa
 
 ## Design and Implement a Microservices-based Remote Patient Monitoring System
 
-You are tasked with designing and implementing a simplified remote patient monitoring system. The system should be capable of receiving real-time health data from patients and making it available for providers to read through an API. 
+You are tasked with designing and implementing a simplified remote patient monitoring system. The system should be capable of receiving real-time health data from patients and making it available for providers to read. 
 The system should provide the following capabilities.
 
 
