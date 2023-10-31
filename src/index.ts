@@ -9,7 +9,6 @@ class MessageQueue {
   private services: string[];
 
   constructor() {
-    console.log('New MessageQueue instance created');
     this.queue = [];
     this.services = [];
   }
@@ -25,9 +24,7 @@ class MessageQueue {
   }
 
   public broadcastMessage(): void {
-    console.log("Waiting for messages...")
     if (this.queue.length === 0) {
-      console.log('Message queue is empty.');
       return;
     }
 
