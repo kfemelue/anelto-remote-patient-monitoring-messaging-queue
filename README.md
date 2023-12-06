@@ -90,7 +90,7 @@ The system should provide the following capabilities.
 2) Real-time data processing and communication between services.
 
 ### Submission
-Please fork this repository, make your changes, and provide a link to your forked repository as your submission. Ensure that your repository is public so that it can be reviewed.
+Please clone this repository, make your changes, and provide a link to your cloned repository as your submission. Ensure that your repository is public so that it can be reviewed.
 
 Include detailed setup and run instructions in your README, as well as any additional documentation needed to understand and test your implementation.
 
