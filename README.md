@@ -54,7 +54,7 @@
 | Index  | /api/patients/  | GET | Endpoint for Providers to view current data of all Patients |
 | READ | /api/patients/:id  | GET | Endpoint for Providers to select one Patient and view history |
 | CREATE  | /api/patients/add  | POST | Endpoint for Providers to add a new Patient to DB |
-| UPDATE  | /api/patients/update:id  | POST | Endpoint to capture Data from IOT device and Update Patient |
+| UPDATE  | /api/patients/update/:id  | POST | Endpoint to capture Data from IOT device and Update Patient |
 | DESTROY  | /api/patients/delete/:id  | DELETE | Endpoint for Providers to remove a patient from DB using id |
 | LISTEN  | /api/patients/message  | POST | Endpoint to register as serviceUrl for messaging service |
 
