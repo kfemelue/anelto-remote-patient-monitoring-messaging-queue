@@ -44,18 +44,18 @@ const getOnePatient = async (req, res, next) => {
 
 const createPatient = (req, res, next) => {
     body = req.body;
-    let newPatient = new Patient(
+    let newPatient = new patient.Patient(
         req.body.name,
         req.body.email,
         req.body.number,
         req.body.birthdate,
-        req.body.height,
-        req.body.weight,
-        req.body.temperature,
-        req.body.pulse,
+        Number(req.body.height),
+        Number(req.body.weight),
+        Number(req.body.temperature),
+        Number(req.body.pulse),
         req.body.bloodPressure,
-        req.body.bloodOxygen,
-        req.body.bloodSugar
+        Number(req.body.bloodOxygen),
+        Number(req.body.bloodSugar)
     );
     patientsFullHistory.push(newPatient);
     patientsMostRecent.push(newPatient);
@@ -74,12 +74,12 @@ const updatePatientById = async (req, res, next) => {
     patientsFullHistory.push(clone);
 
     // update PatientCurrent based on req.body
-    weight = req.body.weight;
-    temperature = req.body.temperature;
-    pulse = req.body.pulse;
+    weight = Number(req.body.weight);
+    temperature = Number(req.body.temperature);
+    pulse = Number(req.body.pulse);
     bloodPressure = req.body.bloodPressure;
-    bloodOxygen = req.body.bloodOxygen;
-    bloodSugar = req.body.bloodSugar;
+    bloodOxygen = Number(req.body.bloodOxygen);
+    bloodSugar = Number(req.body.bloodSugar);
     timestamp = Date.now()
     
     patientCurrent.setValue('weight', weight)

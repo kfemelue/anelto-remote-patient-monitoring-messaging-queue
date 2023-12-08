@@ -1,4 +1,4 @@
-const {uuidv4, uuid} = require("uuid")
+const { v4 : uuidv4 } = require('uuid');
 
 class Patient {
     constructor(
@@ -27,7 +27,7 @@ class Patient {
          * @param {Number} bloodOxygen The spO2 of a patient as a decimal
          * @param {Number} bloodSugar The bloodsugar of a patient (mg/dL)
          */
-        this.id = uuid()
+        this.id = uuidv4();
         this.name = name;
         this.email = email;
         this.number = number;

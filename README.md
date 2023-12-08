@@ -84,12 +84,12 @@ HTTP POST `http://localhost:3000/api/patients/update/{id}`
 Request Body must be a json containing values from IoT device formatted similarly to:
 ```
 {
-    "weight" : 193,
-    "temperature" : 97,
-    "pulse" : 71,
+    "weight" : "193",
+    "temperature" : "97",
+    "pulse" : "71",
     "bloodPressure" : "120/70",
-    "bloodOxygen" : .97,
-    "bloodSugar" : 83
+    "bloodOxygen" : ".97",
+    "bloodSugar" : "83"
 }
 ```
 
