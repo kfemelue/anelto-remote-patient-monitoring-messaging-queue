@@ -10,7 +10,7 @@
 - concurrently ^8.2.2
 - cors ^2.8.5
 - express ^4.18.2
-- uuidv4 ^6.2.13
+- uuid ^9.0.1
 
 ## Setup
 
