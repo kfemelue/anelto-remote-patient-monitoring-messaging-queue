@@ -17,8 +17,8 @@
 1. Clone the repository:
 
     ```
-    git clone https://github.com/your-username/remote-patient-monitoring-messaging-queue.git
-    cd remote-patient-monitoring-messaging-queue
+    git clone https://github.com/kfemelue/anelto-remote-patient-monitoring-messaging-queue.git
+    cd anelto-remote-patient-monitoring-messaging-queue
     ```
 
 2. Install the dependencies:
