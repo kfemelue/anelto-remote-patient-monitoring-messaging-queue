@@ -16,7 +16,7 @@ patientRouter.get("/:id", getOnePatient);
 // API endpoints to modify and create Patient Charts based on data sent by IoT device
 patientRouter.post("/add", createPatient);
 patientRouter.post("/update/:id", updatePatientById);
-patientRouter.delete("/:id",deletePatientById);
+patientRouter.delete("/delete/:id",deletePatientById);
 
 
 

@@ -1,15 +1,16 @@
-# Remote Patient Monitoring Messaging Queue
 
-## Description
-
-This project implements a simple messaging queue system designed for a remote patient monitoring system. The service allows for registration of listener services and provides an endpoint to enqueue messages. Messages in the queue are broadcasted to all registered listeners every 5 seconds.
 
 ## Prerequisites
-
 - Node.js
 - npm or yarn
 - TypeScript
 - ts-node (for development)
+- axios ^1.6.0
+- body-parser ^1.20.2
+- concurrently ^8.2.2
+- cors ^2.8.5
+- express ^4.18.2
+- uuidv4 ^6.2.13
 
 ## Setup
 
@@ -23,7 +24,7 @@ This project implements a simple messaging queue system designed for a remote pa
 2. Install the dependencies:
 
     ```
-    npm install
+    npm install -y
     ```
 
    or if you are using yarn:
@@ -35,63 +36,71 @@ This project implements a simple messaging queue system designed for a remote pa
 3. Start the development server:
 
     ```
-    npm run dev
+    npm run dev-start
     ```
 
    or using yarn:
 
     ```
-    yarn dev
+    yarn dev-start
     ```
 
-   This will start the server on `http://localhost:3033`.
+   This will start both the messaging server on `http://localhost:3033` and The API server on `http://localhost:3000` concurrently
+
 
 ## API Endpoints
-
-### Register a Listener Service
-
-- **Endpoint**: `POST /register`
-- **Body**:
-  ```json
-  {
-    "serviceUrl": "http://localhost:8080"
-  }
-
-### Send a Message to the Queue
-- **Endpoint**: `POST /send-message`
-- **Body**:
-  ```json
-  {
-  "message": "Your message here"
-  }
-  ```
-
-## Design and Implement a Microservices-based Remote Patient Monitoring System
-
-You are tasked with designing and implementing a simplified remote patient monitoring system. The system should be capable of receiving real-time health data from patients and making it available for providers to read. 
-The system should provide the following capabilities.
+| NAME  | API Endpoint | HTTP Verb | Purpose |
+| ------------- | ------------- | ------------- | ------------- |
+| Index  | /api/patients/  | GET | Endpoint for Providers to current data of all Patients |
+| READ | /api/patients/:id  | GET | Endpoint for Providers to select one Patient and view history |
+| CREATE  | /api/patients/add  | POST | Endpoint for Providers to add a new Patient to DB |
+| UPDATE  | /api/patients/update:id  | POST | Endpoint to capture Data from IOT device and Update Patient |
+| DESTROY  | /api/patients/delete/:id  | DELETE | Endpoint for Providers to remove a patient from DB using id |
+| LISTEN  | /api/patients/message  | POST | Endpoint to register as serviceUrl for messaging service |
 
 
-1) Patient Data: Manage patient profiles and their historical health data. 
+### Create Patient Example
+HTTP POST `http://localhost:3000/api/patients/add`
 
-2) Real-time Data Processing: Processes incoming real-time health data from patient devices.
+Request Body must be a json containing values formatted similarly to:
+```
+{
+    "name" : "Charles F. Xavier",
+    "email": "bossman@xmen.com",
+    "number" : "540-298-2852",
+    "birthdate" : "1935-07-14",
+    "height" : 65,
+    "weight" : 184,
+    "temperature" : 96,
+    "pulse" : 73,
+    "bloodPressure" : "130/88",
+    "bloodOxygen" : .98,
+    "bloodSugar" : 95
+}
+```
+### Update Patient Example
+HTTP POST `http://localhost:3000/api/patients/update/{id}`
 
-### Instructions:
+Request Body must be a json containing values from IoT device formatted similarly to:
+```
+{
+    "weight" : 193,
+    "temperature" : 97,
+    "pulse" : 71,
+    "bloodPressure" : "120/70",
+    "bloodOxygen" : .97,
+    "bloodSugar" : 83
+}
+```
 
-***Design Document***: Create a detailed design document that outlines your proposed architecture. Include:
+### Additional Notes
 
-1) Strategies for handling real-time data processing and ensuring data consistency across services.
-2) Considerations for system reliability, scalability, and security.
-3) Any other relevant architectural decisions.
-
-***Implementation***: Implement the system based on your design, focusing on:
-
-1) RESTful endpoints for essential operations in applicable service(s).
-2) Real-time data processing and communication between services.
-
-### Submission
-Please clone this repository, make your changes, and provide a link to your cloned repository as your submission. Ensure that your repository is public so that it can be reviewed.
-
-Include detailed setup and run instructions in your README, as well as any additional documentation needed to understand and test your implementation.
-
-
+1. Data is consistent across services, as only one service is needed to fit the use case.
+2. Reliability Security and Scalability Considerations
+    - Errors are handled appropriately so that causes of system failure can be reviewed.
+    - In a full scale application, data should be encrypted BOTH at rest AND in trasit, in accordance with HIPAA electronic Protected Health  Information (ePHI) compliance standards.
+    - For the purpose of this assessment in-memory arrays are used to store data, but a full scale application can utilize a SQL Relational  Database.
+        - A SQL database enhances scalability, as multiple servers can read request from the same queue, but primary keys or unique indexes can be utilized in the DB to prevent record duplication, and ensure consistency across services.
+        - Such a Database would have a Table for Patients, Providers, and Devices
+        - Providers and Patients would have a Many to Many Relationship (Each Patient could have Multiple Healthcare Providers, vice versa)
+        - Patients and Devices would have a one to one relationship (Assuming One Dvice is sending Patient Data to server)
