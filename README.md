@@ -51,7 +51,7 @@
 ## API Endpoints
 | NAME  | API Endpoint | HTTP Verb | Purpose |
 | ------------- | ------------- | ------------- | ------------- |
-| Index  | /api/patients/  | GET | Endpoint for Providers to current data of all Patients |
+| Index  | /api/patients/  | GET | Endpoint for Providers to view current data of all Patients |
 | READ | /api/patients/:id  | GET | Endpoint for Providers to select one Patient and view history |
 | CREATE  | /api/patients/add  | POST | Endpoint for Providers to add a new Patient to DB |
 | UPDATE  | /api/patients/update:id  | POST | Endpoint to capture Data from IOT device and Update Patient |
@@ -69,13 +69,13 @@ Request Body must be a json containing values formatted similarly to:
     "email": "bossman@xmen.com",
     "number" : "540-298-2852",
     "birthdate" : "1935-07-14",
-    "height" : 65,
-    "weight" : 184,
-    "temperature" : 96,
-    "pulse" : 73,
+    "height" : "65",
+    "weight" : "184",
+    "temperature" : "96",
+    "pulse" : "73",
     "bloodPressure" : "130/88",
-    "bloodOxygen" : .98,
-    "bloodSugar" : 95
+    "bloodOxygen" : ".98",
+    "bloodSugar" : "95"
 }
 ```
 ### Update Patient Example
